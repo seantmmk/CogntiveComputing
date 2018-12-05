@@ -51,7 +51,8 @@ class App extends Component {
 
   handleResponse(responseJson) {
     if (responseJson.hasOwnProperty('output') && responseJson.output.hasOwnProperty('action') && responseJson.output.action.hasOwnProperty('call_discovery')) {
-      this.addMessage( { label: 'Discovery Result:', message: 'Great question. Here\'s what I found:', date: (new Date()).toLocaleTimeString()});
+      //this.addMessage( { label: 'Discovery Result:', message: 'Great question. Here\'s what I found:', date: (new Date()).toLocaleTimeString()});
+      //this.addMessage( responseJson.output.discoveryResults);
       this.formatDiscovery(responseJson.output.discoveryResults);
 
     } else {
@@ -96,8 +97,12 @@ class App extends Component {
 
   formatDiscovery(resultArr) {
     resultArr.map(function(result, index) {
-      const formattedResult = <DiscoveryResult key={'d' + this.state.discoveryNumber + index} title={result.title} preview={result.bodySnippet} link={result.sourceUrl} linkText={'See full manual entry'} />;
-      this.addMessage({ message: formattedResult });
+     const formattedResult = <DiscoveryResult key={'d' + this.state.discoveryNumber + index} title={result.title} preview={result.bodySnippet} link={result.sourceUrl} linkText={'View relevant article'} />;
+     //const formattedResult = <DiscoveryResult key={'d' + this.state.discoveryNumber + index} preview={result.bodySnippet} />;
+      //this.addMessage({ message: formattedResult });
+      this.addMessage({ label: 'Discovery Result:', message: String(result.bodySnippet), date: (new Date()).toLocaleTimeString()});
+      //this.addMessage(result.bodySnippet);
+      //this.addMessage("Debugging");
     }.bind(this));
 
     this.setState({
@@ -120,7 +125,7 @@ class App extends Component {
     return (
       <div className="app-wrapper">
         <p className="conversation__intro">
-                    This demo shows how the Watson Assistant service calls the Discovery service when it does not know how to respond. The calls to Watson Assistant and Discovery are made in OpenWhisk, IBM's serverless platform.
+                    This demo is utilized Watsons Discovery Service to create a medical chatbot.
         </p>
         <Conversation
           onSubmit={this.handleSubmit}

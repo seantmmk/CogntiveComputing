@@ -59,11 +59,11 @@ function main(params) {
         }
         var i = 0;
         var discoveryResults = [];
-        while (data.results[i] && i < 3 ) {
+        while (data.results[i] && i < 1 ) {
           let body = data.results[i].contentHtml;
           discoveryResults[i] = {
             body: body,
-            bodySnippet: (body.length < 144 ? body : (body.substring(0,144) + '...')).replace(/<\/?[a-zA-Z]+>/g, ''),
+            bodySnippet: (body.length < 1000 ? body : (body.substring(0,1000))).replace(/<\/?[a-zA-Z]+>/g, ''),
             confidence: data.results[i].score,
             id: data.results[i].id,
             sourceUrl: data.results[i].sourceUrl,

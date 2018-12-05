@@ -1,0 +1,20 @@
+---
+declared-services:
+  anesthesia_conversation:
+    label: conversation
+    plan: free
+  anesthesia_discovery:
+    label: discovery
+    plan: lite
+applications:
+- name: anesthesia_ta
+  command: npm start
+  path: C:\Users\seant\Desktop\assistant-with-discovery-openwhisk
+  instances: 1
+  memory: 1.125GB 
+  services:
+    - anesthesia_conversation
+    - anesthesia_discovery
+  env:
+    NPM_CONFIG_PRODUCTION: false
+    WORKSPACE_ID: 4f402520-82c1-4a2a-af82-61de06cfb765
