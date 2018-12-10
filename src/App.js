@@ -98,11 +98,7 @@ class App extends Component {
   formatDiscovery(resultArr) {
     resultArr.map(function(result, index) {
      const formattedResult = <DiscoveryResult key={'d' + this.state.discoveryNumber + index} title={result.title} preview={result.bodySnippet} link={result.sourceUrl} linkText={'View relevant article'} />;
-     //const formattedResult = <DiscoveryResult key={'d' + this.state.discoveryNumber + index} preview={result.bodySnippet} />;
-      //this.addMessage({ message: formattedResult });
       this.addMessage({ label: 'Discovery Result:', message: String(result.bodySnippet), date: (new Date()).toLocaleTimeString()});
-      //this.addMessage(result.bodySnippet);
-      //this.addMessage("Debugging");
     }.bind(this));
 
     this.setState({
